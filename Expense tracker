@@ -1,0 +1,30 @@
+import csv
+
+expenses = []
+
+for i in range(4):
+    description = input("Enter your expense: ")
+    amount = input("Enter amount: ")
+    expenses.append([description , amount])
+
+with open ("expenses.csv" , "w" , newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow(["Description", "Amount"])
+    writer.writerows(expenses)
+
+print("Expenses Saved!")
+
+total=0
+
+with open ("expenses.csv" , "r") as file:
+    reader = csv.reader(file)
+    next(reader)
+    print("/n--- Expense tracker ---")
+
+    for row in reader:
+        print(row[0] + " -KES " + row[1])
+        total += float(row[1])
+
+print("Total spent: KES: "+ str(total))
+
+
